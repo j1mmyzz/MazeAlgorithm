@@ -1,4 +1,6 @@
+
 package app;
+
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -8,6 +10,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+
 
 import javax.swing.AbstractAction;
 import javax.swing.JComboBox;
@@ -21,6 +24,7 @@ import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
+
 public class MazeGUI extends JFrame {
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
@@ -32,21 +36,10 @@ public class MazeGUI extends JFrame {
     private JMenu help;
     private JMenu computer;
 
-    /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    MazeGUI frame = new MazeGUI();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
+
+
+
+
 
     /**
      * Create the frame.
@@ -54,6 +47,7 @@ public class MazeGUI extends JFrame {
     public MazeGUI() {
         setSize(625, 675);
         setResizable(false);
+
 
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -63,9 +57,11 @@ public class MazeGUI extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(new BorderLayout(0, 0));
 
+
         // Menu Bar
         menuBar = new JMenuBar();
         setJMenuBar(menuBar);
+
 
         // Menu
         game = new JMenu("Game");
@@ -73,13 +69,16 @@ public class MazeGUI extends JFrame {
         computer = new JMenu("Computer");
         help = new JMenu("Help");
 
+
         menuBar.add(game);
         menuBar.add(level);
         menuBar.add(computer);
         menuBar.add(help);
 
+
         JMenuItem newGame = new JMenuItem(new AbstractAction("New Game") {
             private static final long serialVersionUID = 1L;
+
 
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -88,8 +87,10 @@ public class MazeGUI extends JFrame {
             }
         });
 
+
         JMenuItem restart = new JMenuItem(new AbstractAction("Restart Game") {
             private static final long serialVersionUID = 1L;
+
 
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -97,8 +98,10 @@ public class MazeGUI extends JFrame {
             }
         });
 
+
         JMenuItem hint = new JMenuItem(new AbstractAction("Hint") {
             private static final long serialVersionUID = 1L;
+
 
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -106,8 +109,10 @@ public class MazeGUI extends JFrame {
             }
         });
 
+
         JMenuItem autoMove = new JMenuItem(new AbstractAction("Auto Move") {
             private static final long serialVersionUID = 1L;
+
 
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -115,14 +120,17 @@ public class MazeGUI extends JFrame {
             }
         });
 
+
         JMenuItem algorithm = new JMenuItem(new AbstractAction("Algorithm") {
             private static final long serialVersionUID = 1L;
+
 
             @Override
             public void actionPerformed(ActionEvent e) {
                 mazePane.algorithm((Graphics2D) mazePane.getGraphics());
             }
         });
+
 
         levels = new JMenuItem[10];
         for(int i = 0; i < levels.length; i++) {
@@ -132,37 +140,48 @@ public class MazeGUI extends JFrame {
             level.add(levels[i]);
         }
 
+
         JMenuItem about = new JMenuItem(new AbstractAction("About") {
             private static final long serialVersionUID = 1L;
+
 
             @Override
             public void actionPerformed(ActionEvent e) {
             }
         });
 
+
         game.add(newGame);
         game.add(restart);
         game.add(hint);
 
+
         computer.add(autoMove);
         computer.add(algorithm);
 
+
         help.add(about);
+
 
         mazePane = new MazePanel(11);
         contentPane.add(mazePane, BorderLayout.CENTER);
     }
 
+
     class LevelsAction extends AbstractAction{
         private static final long serialVersionUID = 1L;
+
 
         @Override
         public void actionPerformed(ActionEvent e) {
             int number = Integer.valueOf(e.getActionCommand()) * 10 + 1;
-//			System.out.println(number);
+//       System.out.println(number);
             mazePane.refresh(number);
             repaint();
         }
 
+
     }
 }
+
+
