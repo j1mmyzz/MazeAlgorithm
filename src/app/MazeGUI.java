@@ -34,15 +34,14 @@ public class MazeGUI extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(new BorderLayout(0, 0));
 
-
         // Menu Bar
         menuBar = new JMenuBar();
         setJMenuBar(menuBar);
 
-
         // Menu
         computer = new JMenu("Solve");
 
+        //Add
         menuBar.add(computer);
 
         JMenuItem restart = new JMenuItem(new AbstractAction("Restart") {
@@ -65,42 +64,22 @@ public class MazeGUI extends JFrame {
 
         JMenuItem algorithm = new JMenuItem(new AbstractAction("Visualization") {
             private static final long serialVersionUID = 1L;
-
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 mazePane.algorithm((Graphics2D) mazePane.getGraphics());
             }
         });
     
-
         computer.add(autoMove);
         computer.add(algorithm);
         computer.add(restart);
         /*
-         * 
-         * 
          * BING FUCKING GO
-         * 
-         * 
          */
         mazePane = new MazePanel(Main.getMazeSize()); //This is where you control the size
         contentPane.add(mazePane, BorderLayout.CENTER);
     }
-
-
-    class LevelsAction extends AbstractAction{
-        private static final long serialVersionUID = 1L;
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            int number = Integer.valueOf(e.getActionCommand()) * 10 + 1;
-            mazePane.refresh(number);
-            repaint();
-        }
-
-
-    }
+    
 }
 
 
