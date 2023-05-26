@@ -251,15 +251,8 @@ public class Maze {
         int size = 11;
         Position start = new Position(1, 0);
         Position end = new Position(size, size + 1);
-//		int pre_time = (int) System.currentTimeMillis();
 
         Maze maze = new Maze(size);
-//		Stack<Position> way = maze.getDirectWay(start, end);
-//		System.out.println(way);
-//		int after_time = (int) System.currentTimeMillis();
-
-//		System.out.println(maze.steps + ": Steps");
-//		System.out.println(1.0 * (after_time - pre_time) / 1000 + "s");
 
         maze.print();
 
