@@ -96,7 +96,13 @@ public class Main{
                             levels.setVisible(true); 
                         }
                     });
-
+                    createCustomMaze.addActionListener(new ActionListener() {
+                        @Override
+                            public void actionPerformed(ActionEvent e) {
+                                CustomMazeGUI custom = new CustomMazeGUI();
+                                custom.setVisible(true);
+                            }
+                    });
                     maze.add(generateRandomMaze);
                     maze.add(createCustomMaze);
 

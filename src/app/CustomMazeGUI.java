@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
-public class MazeGUI extends JFrame {
+public class CustomMazeGUI extends JFrame {
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
     private MazePanel mazePane;
@@ -23,12 +23,12 @@ public class MazeGUI extends JFrame {
     private JMenu computer;
 
 
-    public MazeGUI() {
+    public CustomMazeGUI() {
         setSize(625, 675);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        setTitle("Maze Solver");
+        setTitle("Custom Maze Solver");
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
@@ -76,7 +76,7 @@ public class MazeGUI extends JFrame {
         /*
          * BING FUCKING GO
          */
-        mazePane = new MazePanel(Main.getMazeSize()); //This is where you control the size
+        mazePane = new MazePanel(21); //temporality set as 21 
         contentPane.add(mazePane, BorderLayout.CENTER);
     }
     

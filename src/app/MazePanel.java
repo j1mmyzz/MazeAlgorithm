@@ -60,13 +60,6 @@ class MazePanel extends JPanel implements KeyListener {
         }
     }
 
-    /**
-     * Fill maze on panel by Graphics2D.
-     *
-     * @param Graphics2D
-     * @return void
-     * @author Hulk
-     */
     private void drawMaze(Graphics2D g2d) {
         for (int i = 0; i < cellsMaze; i++) {
             for (int j = 0; j < cellsMaze; j++) {
@@ -140,17 +133,6 @@ class MazePanel extends JPanel implements KeyListener {
         }
     }
 
-    // Problem
-    public void hint() {
-        Stack<Position> way = maze.getDirectWay(start, end);
-        way.pop();
-        Position next = way.pop();
-        int x = next.getX();
-        int y = next.getY();
-        Graphics2D g2d = (Graphics2D) getGraphics();
-        g2d.setColor(Color.RED);
-        g2d.fill(cells[x][y]);
-    }
 
     @Override
     protected void paintComponent(Graphics g) {
@@ -210,9 +192,7 @@ class MazePanel extends JPanel implements KeyListener {
                 move((Graphics2D) getGraphics(), current);
             }
         }
-        if (e.getKeyCode() == KeyEvent.VK_H) {
-            hint();
-        }
+       
     }
 
     @Override

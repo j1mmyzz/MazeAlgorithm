@@ -30,23 +30,23 @@ public class Maze {
         return this.array;
     }
 
-    private boolean canUp(Position position) {
+    public boolean canUp(Position position) {
         return position.getX() - 2 > 0;
     }
 
-    private boolean canRight(Position position) {
+    public boolean canRight(Position position) {
         return position.getY() + 2 <= size;
     }
 
-    private boolean canDown(Position position) {
+    public boolean canDown(Position position) {
         return position.getX() + 2 <= size;
     }
 
-    private boolean canLeft(Position position) {
+    public boolean canLeft(Position position) {
         return position.getY() - 2 > 0;
     }
 
-    private Position randNext(Position current) {
+    public Position randNext(Position current) {
         ArrayList<Integer> nexts = new ArrayList<Integer>();
         if (canUp(current))
             nexts.add(0);
@@ -78,7 +78,7 @@ public class Maze {
         }
     }
 
-    private void creatPath(Position current, Position next) {
+    public void creatPath(Position current, Position next) {
         int x = (current.getX() + next.getX()) / 2;
         int y = (current.getY() + next.getY()) / 2;
 
