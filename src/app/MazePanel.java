@@ -112,11 +112,11 @@ class MazePanel extends JPanel implements KeyListener {
         }
     }
 
-    private boolean passed() {
+    public boolean passed() {
         return current.equals(end);
     }
 
-    private void move(Graphics2D g2d, Position current) {
+    public void move(Graphics2D g2d, Position current) {
         int x = current.getX();
         int y = current.getY();
 
@@ -133,7 +133,7 @@ class MazePanel extends JPanel implements KeyListener {
         }
     }
 
-
+    //draws the maze
     @Override
     protected void paintComponent(Graphics g) {
         drawMaze((Graphics2D) g);
@@ -144,30 +144,6 @@ class MazePanel extends JPanel implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_W) {
-            if (maze.canMoveUp(current)) {
-                current.setX(current.getX() - 1);
-                move((Graphics2D) getGraphics(), current);
-            }
-        }
-        if (e.getKeyCode() == KeyEvent.VK_D) {
-            if (maze.canMoveRight(current)) {
-                current.setY(current.getY() + 1);
-                move((Graphics2D) getGraphics(), current);
-            }
-        }
-        if (e.getKeyCode() == KeyEvent.VK_S) {
-            if (maze.canMoveDown(current)) {
-                current.setX(current.getX() + 1);
-                move((Graphics2D) getGraphics(), current);
-            }
-        }
-        if (e.getKeyCode() == KeyEvent.VK_A) {
-            if (maze.canMoveLeft(current)) {
-                current.setY(current.getY() - 1);
-                move((Graphics2D) getGraphics(), current);
-            }
-        }
         if (e.getKeyCode() == KeyEvent.VK_UP) {
             if (maze.canMoveUp(current)) {
                 current.setX(current.getX() - 1);
