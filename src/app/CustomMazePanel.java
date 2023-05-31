@@ -1,19 +1,17 @@
 package app;
-
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.geom.Rectangle2D;
 import java.util.Stack;
-
 import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
 import api.Position;
 
 public class CustomMazePanel extends JPanel implements KeyListener {
@@ -45,17 +43,11 @@ public class CustomMazePanel extends JPanel implements KeyListener {
         this.cellsMaze = cellsMaze;
         setSize(dimension, dimension);
         cell_size = (float) (1.0 * dimension / cellsMaze);
-
         setFocusable(true);
-
-        // Maze Object
         maze = new Maze(cellsMaze - 2);
         array = maze.getArray();
 
-        // Set Position
-        /*
-         * Bingo Numero Dos 
-         */
+        //Bingo 2
         start = current = new Position(1, 0);
         end = new Position(cellsMaze - 2, cellsMaze - 1);
 
@@ -67,36 +59,61 @@ public class CustomMazePanel extends JPanel implements KeyListener {
             }
         }
 
-
         customMazeCells = new JButton[cellsMaze][cellsMaze];
-        for(int i = 0; i<cellsMaze;i++){
+        for(int i = 0; i<cellsMaze; i++){
             for(int j = 0; j < cellsMaze;j++){
+                final int finalI = i;
+        final int finalJ = j;
                 customMazeCells[i][j] = new JButton();
+                customMazeCells[i][j].addActionListener(new ActionListener() {
+                    @Override
+                    public  void actionPerformed(ActionEvent e) {
+                        customMazeCells[finalI][finalJ].setBackground(Color.yellow);
+                         
+                        
+                        
+                    }
+                });
             }
         }
 
     }
 
-   
-    public void drawMaze(Graphics2D g2d) {
+    public void drawMaze(JButton[][] jba){
         for (int i = 0; i < cellsMaze; i++) {
             for (int j = 0; j < cellsMaze; j++) {
                 if (array[i][j] == 0) {
-                    g2d.setColor(Color.WHITE);
+                    customMazeCells[i][j].setBackground(Color.WHITE);
                 } else {
-                    g2d.setColor(Color.BLACK);
+                    customMazeCells[i][j].setBackground(Color.BLACK);
                 }
-                g2d.fill(cells[i][j]); //not sure how to fix this
-            }
-        }
-
-        // Fill first cell
-        int x = start.getX();
+               // g2d.fill(cells[i][j]); //not sure how to fix this
+               int x = start.getX();
         int y = start.getY();
 
-        g2d.setColor(Color.GREEN);
-        g2d.fill(cells[x][y]);
+        customMazeCells[i][j].setBackground(Color.GREEN);
+            }
+        }
     }
+    // public void drawMaze(Graphics2D g2d) {
+    //     for (int i = 0; i < cellsMaze; i++) {
+    //         for (int j = 0; j < cellsMaze; j++) {
+    //             if (array[i][j] == 0) {
+    //                 g2d.setColor(Color.WHITE);
+    //             } else {
+    //                 g2d.setColor(Color.BLACK);
+    //             }
+    //             g2d.fill(cells[i][j]); //not sure how to fix this
+    //         }
+    //     }
+
+    //     // Fill first cell
+    //     int x = start.getX();
+    //     int y = start.getY();
+
+    //     g2d.setColor(Color.GREEN);
+    //     g2d.fill(cells[x][y]);
+    // }
 
     public void autoMove(Graphics2D g2d) {
         Stack<Position> way = maze.getDirectWay(start, end);
@@ -151,12 +168,7 @@ public class CustomMazePanel extends JPanel implements KeyListener {
         }
     }
 
-
-
-    @Override
-    protected void paintComponent(Graphics g) {
-        drawMaze((Graphics2D) g);
-    }
+   
 
     public void keyTyped(KeyEvent e) {
     }

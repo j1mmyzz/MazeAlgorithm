@@ -110,7 +110,7 @@ public class Main{
                     maze.add(createCustomMaze);
 
 
-                    maze.setVisible(true); //change this to true later
+                    maze.setVisible(true); //change this to true laters
                     maze.repaint();
 
                     
