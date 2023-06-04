@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 
 import api.Position;
 
-class MazePanel extends JPanel implements KeyListener {
+public class MazePanel extends JPanel implements KeyListener {
     private static final long serialVersionUID = 1L;
     private Rectangle2D[][] cells;
     private static final int dimension = 600;
