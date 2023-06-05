@@ -23,11 +23,11 @@ public class PathfindingFrame extends JFrame implements ActionListener {
 	private JLabel stepSpinnerLabel;
 	private JLabel algorithmListLabel;
 	private JLabel gridEditorListLabel;
-	
-	public PathfindingFrame(){
-		
+	private static int size;
+	public PathfindingFrame(int s){
+		size = s;
 		//build the ui
-		grid = new Grid(625,625,25,25);
+		grid = new Grid(625,625,s,s);
 		
 		container = new JPanel(new BorderLayout());
 		controlPanel = new JPanel(new BorderLayout());
@@ -85,12 +85,8 @@ public class PathfindingFrame extends JFrame implements ActionListener {
 		this.pack();		
 	}
 	
-	//listen to the ui components and respond to user input
 	public void actionPerformed(ActionEvent e){
 		if("start".equals(e.getActionCommand())){			
-			
-			//pathfinding is a long task. we need to run this in a worker
-			//thread so we dont block the EDT.
 			SwingWorker worker = new SwingWorker<Void,Void>(){
 				protected Void doInBackground(){
 					grid.start((int)stepSpinner.getValue(), algorithmList.getSelectedIndex());
@@ -111,4 +107,8 @@ public class PathfindingFrame extends JFrame implements ActionListener {
 		}
 		
 	}
+    public static void setSize(int s){
+        size = s;
+    }
+  
 }

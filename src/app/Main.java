@@ -102,9 +102,9 @@ public class Main{
                                 SwingUtilities.invokeLater(new Runnable(){
                                     @Override
                                     public void run() {
-                                        PathfindingFrame frame = new PathfindingFrame();
+                                        PathfindingFrame frame = new PathfindingFrame(20);
                                         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                                        frame.setTitle("Pathfinding Visualiser Version 1.1");
+                                        frame.setTitle("Algorithms");
                                         frame.setVisible(true);
                                     }			
                                 });	
