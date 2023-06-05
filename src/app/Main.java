@@ -46,7 +46,7 @@ public class Main{
 
 
                     JButton generateRandomMaze = new JButton("Generate Random Maze");
-                    JButton createCustomMaze = new JButton("Create Custom Maze");
+                    JButton createCustomMaze = new JButton("Generate Empty Grid");
                     generateRandomMaze.setBounds(40, 560, 200, 50);
                     createCustomMaze.setBounds(380, 560, 200, 50);
                     generateRandomMaze.addActionListener(new ActionListener() {
@@ -99,8 +99,15 @@ public class Main{
                     createCustomMaze.addActionListener(new ActionListener() {
                         @Override
                             public void actionPerformed(ActionEvent e) {
-                                CustomMazeGUI custom = new CustomMazeGUI();
-                                custom.setVisible(true);
+                                SwingUtilities.invokeLater(new Runnable(){
+                                    @Override
+                                    public void run() {
+                                        PathfindingFrame frame = new PathfindingFrame();
+                                        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                                        frame.setTitle("Pathfinding Visualiser Version 1.1");
+                                        frame.setVisible(true);
+                                    }			
+                                });	
                             }
                     });
                     maze.add(generateRandomMaze);
