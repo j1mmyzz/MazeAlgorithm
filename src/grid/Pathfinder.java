@@ -48,7 +48,7 @@ public class Pathfinder {
 					closedList.add(current);
 
 				if(current == start)
-					start.setColor(Color.MAGENTA);
+					start.setColor(Color.yellow);
 
 				if(current == goal){
 					goal.setColor(Color.RED);
@@ -64,7 +64,7 @@ public class Pathfinder {
 							double distanceFromStart = current.getDistanceFromStart() + e.getCost();
 
 							if(next.getColor() != Color.GREEN && next.getColor() != Color.MAGENTA)
-								next.setColor(Color.BLUE);
+								next.setColor(new Color(0, 200, 255));
 
 							if(distanceFromStart < next.getDistanceFromStart()){
 								openList.remove(next);
