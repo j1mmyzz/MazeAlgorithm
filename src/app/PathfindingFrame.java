@@ -17,10 +17,8 @@ public class PathfindingFrame extends JFrame implements ActionListener {
 	private JPanel optionPanel;
 	private JButton playButton;
 	private JButton resetButton;
-	private JSpinner stepSpinner;
 	private JComboBox algorithmList;
 	private JComboBox gridEditorList;
-	private JLabel stepSpinnerLabel;
 	private JLabel algorithmListLabel;
 	private JLabel gridEditorListLabel;
 	private static int size;
@@ -42,12 +40,6 @@ public class PathfindingFrame extends JFrame implements ActionListener {
 	    resetButton.setActionCommand("reset");
 	    resetButton.addActionListener(this);
 	    
-	    SpinnerNumberModel stepSizeModel = new SpinnerNumberModel(250, 50, 1000, 50);
-	    stepSpinner = new JSpinner(stepSizeModel);
-	    stepSpinnerLabel = new JLabel("Time per Step (ms): ");
-	    stepSpinnerLabel.setLabelFor(stepSpinner);
-	    stepSpinnerLabel.setHorizontalAlignment(JLabel.RIGHT);	
-	    
 	    String algorithms[] = {"Dijkstra" , "A*"};
 	    algorithmList = new JComboBox(algorithms);
 	    algorithmListLabel = new JLabel("Search Algorithm: ");
@@ -67,8 +59,6 @@ public class PathfindingFrame extends JFrame implements ActionListener {
 	    controlPanel.add(buttonPanel, BorderLayout.WEST);
 		
 	    optionPanel = new JPanel(new GridLayout(3, 2, 0, 5));
-		optionPanel.add(stepSpinnerLabel);
-		optionPanel.add(stepSpinner);
 		optionPanel.add(algorithmListLabel);
 		optionPanel.add(algorithmList);
 		optionPanel.add(gridEditorListLabel);
@@ -89,7 +79,7 @@ public class PathfindingFrame extends JFrame implements ActionListener {
 		if("start".equals(e.getActionCommand())){			
 			SwingWorker worker = new SwingWorker<Void,Void>(){
 				protected Void doInBackground(){
-					grid.start((int)stepSpinner.getValue(), algorithmList.getSelectedIndex());
+					grid.start(10, algorithmList.getSelectedIndex()); //You can change algorithm speed here
 					return null;
 				}
 			};
