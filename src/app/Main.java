@@ -99,17 +99,51 @@ public class Main{
                     createCustomMaze.addActionListener(new ActionListener() {
                         @Override
                             public void actionPerformed(ActionEvent e) {
-                                SwingUtilities.invokeLater(new Runnable(){
+                                JFrame gridSize = new JFrame("Grid Size");
+                                gridSize.setSize(300, 200);
+                                gridSize.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                                gridSize.setLayout(null);
+                                gridSize.setVisible(true);
+            
+                                JLabel sizeLabel = new JLabel("Enter an Integer: ");
+                                sizeLabel.setBounds(10, 10, 150, 25);
+                                gridSize.add(sizeLabel);
+                                JTextField sizeTextField = new JTextField();
+                                sizeTextField.setBounds(140, 10, 120, 25);
+                                gridSize.add(sizeTextField);
+                                JButton backButton = new JButton("Back");
+                                backButton.setBounds(10, 50, 80, 25);
+                                backButton.addActionListener(new ActionListener() {
                                     @Override
-                                    public void run() {
-                                        PathfindingFrame frame = new PathfindingFrame(20);
-                                        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                                        frame.setTitle("Algorithms");
-                                        frame.setVisible(true);
-                                    }			
-                                });	
+                                    public void actionPerformed(ActionEvent e) {
+                                        gridSize.dispose(); // Close the maze level selection frame
+                                    }
+                                });
+                                gridSize.add(backButton);
+                                JButton generateButton = new JButton("Generate");
+                                generateButton.setBounds(140, 50, 100, 25);
+                                generateButton.addActionListener(new ActionListener() {
+                                    @Override
+                                        public void actionPerformed(ActionEvent e) {
+                                            String gridsize = sizeTextField.getText();
+                                            int parsed = Integer.parseInt(gridsize);
+                                            System.out.println(parsed);
+                                         SwingUtilities.invokeLater(new Runnable(){
+                                        @Override
+                                            public void run() {
+                                             PathfindingFrame frame = new PathfindingFrame(parsed);
+                                                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                                                frame.setTitle("Algorithms");
+                                                frame.setVisible(true);
+                                        }			
+                                    });	
+                                }
+                                });
+                                gridSize.add(generateButton);
+
                             }
                     });
+                   
                     maze.add(generateRandomMaze);
                     maze.add(createCustomMaze);
 
@@ -117,7 +151,7 @@ public class Main{
                     maze.add(createCustomMaze);
 
 
-                    maze.setVisible(true); //change this to true laters
+                    maze.setVisible(true); 
                     maze.repaint();
 
                     
