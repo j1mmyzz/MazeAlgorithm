@@ -19,8 +19,8 @@ public class MazeGUI extends JFrame {
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
     private MazePanel mazePane;
-    private JMenuBar menuBar;
-    private JMenu computer;
+    private JPanel menuBar;
+    private JPanel computer;
 
 
     public MazeGUI() {
@@ -35,47 +35,33 @@ public class MazeGUI extends JFrame {
         contentPane.setLayout(new BorderLayout(0, 0));
 
         // Menu Bar
-        menuBar = new JMenuBar();
-        setJMenuBar(menuBar);
-
+        menuBar = new JPanel();
+        contentPane.add(menuBar, BorderLayout.NORTH);
         // Menu
-        computer = new JMenu("Solve");
+        computer = new JPanel();
 
         //Add
         menuBar.add(computer);
 
-        JMenuItem restart = new JMenuItem(new AbstractAction("Restart") {
+        JButton restart = new JButton(new AbstractAction("Restart") {
             private static final long serialVersionUID = 1L;
-
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 repaint();
             }
         });
         
-        JMenuItem autoMove = new JMenuItem(new AbstractAction("Solve") {
+        JButton autoMove = new JButton(new AbstractAction("Solve") {
             private static final long serialVersionUID = 1L;
             @Override
             public void actionPerformed(ActionEvent e) {
                 mazePane.autoMove((Graphics2D) mazePane.getGraphics());
             }
         });
-
-        JMenuItem algorithm = new JMenuItem(new AbstractAction("Visualization") {
-            private static final long serialVersionUID = 1L;
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                mazePane.algorithm((Graphics2D) mazePane.getGraphics());
-            }
-        });
     
         computer.add(autoMove);
-        computer.add(algorithm);
         computer.add(restart);
-        /*
-         * BING FUCKING GO
-         */
+       
         mazePane = new MazePanel(Main.getMazeSize()); //This is where you control the size
         contentPane.add(mazePane, BorderLayout.CENTER);
     }

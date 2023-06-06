@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 
 import api.Position;
 
-public class MazePanel extends JPanel implements KeyListener {
+public class MazePanel extends JPanel {
     private static final long serialVersionUID = 1L;
     private Rectangle2D[][] cells;
     private static final int dimension = 600;
@@ -28,7 +28,6 @@ public class MazePanel extends JPanel implements KeyListener {
     public Maze maze;
 
     public MazePanel(int cellsMaze) {
-        addKeyListener(this);
         refresh(cellsMaze);
     }
 
@@ -139,39 +138,7 @@ public class MazePanel extends JPanel implements KeyListener {
         drawMaze((Graphics2D) g);
     }
 
-    public void keyTyped(KeyEvent e) {
-    }
+   
 
-    @Override
-    public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_UP) {
-            if (maze.canMoveUp(current)) {
-                current.setX(current.getX() - 1);
-                move((Graphics2D) getGraphics(), current);
-            }
-        }
-        if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            if (maze.canMoveRight(current)) {
-                current.setY(current.getY() + 1);
-                move((Graphics2D) getGraphics(), current);
-            }
-        }
-        if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            if (maze.canMoveDown(current)) {
-                current.setX(current.getX() + 1);
-                move((Graphics2D) getGraphics(), current);
-            }
-        }
-        if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            if (maze.canMoveLeft(current)) {
-                current.setY(current.getY() - 1);
-                move((Graphics2D) getGraphics(), current);
-            }
-        }
-       
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-    }
+    
 }
